@@ -1,9 +1,14 @@
+// Database user: postgres  pass: none  name: bookmarks
+// Database user: postgres  pass: none  name: bookmarks-test
+
 require ('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const {NODE_ENV} = require('./config')
+const logger = require('./logger')
+const BookmarksService = require('./bookmarks/bookmarks-service')
 const bookmarkRouter = require('./bookmark-router')
 const errorHandler = require('./error-handler')
 
@@ -38,6 +43,7 @@ app.use(bookmarkRouter)
 app.get('/', (req,res) => {
   res.send('Hello world!')
 })
+
 
 // error handler to hide error details from the public
 // once deployed to production environment
